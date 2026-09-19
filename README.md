@@ -1,5 +1,9 @@
 # 跃动 · Front Desk Agent 本地 Demo
 
+在线体验：<https://zruihua804.github.io/movement-clinic-agent/>
+
+这是一个无需真实账号、保险或排班接口的公开演示，所有业务数据均为 Mock 数据。
+
 双击 `启动演示.command`，或在本目录运行 `npm start`，然后打开 http://127.0.0.1:4173 。需要 Node.js 20+，无需安装 npm 依赖或填写 API Key。服务仅监听本机；关闭运行服务的终端即停止。
 
 ## 会议演示（约 5 分钟）
