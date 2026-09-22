@@ -21,9 +21,7 @@ export function stepScene(db,c){
  else if(c.stage==='postvisit-ready'){W.submitPostVisitAuthorization(c);}
  else if(c.stage==='authorization'){W.authorize(c,'approved');}
  else if(c.stage==='authorization-done'){W.beginPostVisitScheduling(c);}
- else if(c.stage==='postvisit-imaging'){W.choosePostVisitSlot(c,'imaging','2026-09-27 09:30');}
- else if(c.stage==='postvisit-read'){W.choosePostVisitSlot(c,'read','2026-10-04 16:00');}
- else if(c.stage==='postvisit-rehab'){W.choosePostVisitSlot(c,'rehab','2026-10-06 14:00');}
+ else if(['postvisit-imaging','postvisit-read','postvisit-rehab'].includes(c.stage))return false;
  else if(c.stage==='authorization-supplement'){W.receive(c,demoAnswers.authorizationExtra);}
  else if(c.stage==='authorization-appeal'||c.stage==='authorization-denied'){W.submitAppeal(c,'病历显示症状持续且已完成保守治疗，恳请批准 MRI / CT 与康复疗程。');}
  else if(c.stage==='insurance-decision'){W.say(c,'了解了，我想继续就诊。','patient');W.decideVisit(c,true);}
