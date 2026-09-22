@@ -47,7 +47,7 @@ function externalMessages(c,kind){const rs=(c.receipts||[]).filter(r=>kind==='bo
  else html+=bubble(r.from,`确认结果：${nameResult(q.选择)}。${a.下一步}`,'in',r);
  }else if(kind==='booking'){
  if(r.kind==='schedule'){html+=bubble('Front Desk Agent',`请查询 ${q.匹配人员} 的空闲时段。患者偏好：${q.期望时间}。\n费用条件：${nameResult(q.费用门槛)}；医疗审核：${q.医疗门槛}。`,'out',r);html+=bubble('预约系统',`返回 ${a.可用数量} 个可预约时段。\n${(a.时段||[]).slice(0,3).map(s=>s.人员+' · '+s.日期+' '+s.时间).join('\n')}${a.可用数量>3?'\n其余时段可在患者端选择。':''}`,'in',r);}
- else{html+=bubble('Front Desk Agent',`${r.title}：${q.患者||c.name}\n${q.时段||q.原预约}`,'out',r);html+=bubble('预约系统',`${a.结果}。${a.预约编号?'\n预约编号：'+a.预约编号:''}${a.人员?'\n'+a.人员+' · '+a.日期+' '+a.时间:''}${a.原时段?'\n原时段：'+a.原时段:''}`,'in',r);}
+ else{html+=bubble('Front Desk Agent',`${r.title}：${q.患者||c.name}\n${q.时段||q.原预约||JSON.stringify(q.预约项目||q.项目||{},null,2)}`,'out',r);html+=bubble('预约系统',`${a.结果}。${a.预约编号?'\n预约编号：'+a.预约编号:''}${a.人员?'\n'+a.人员+' · '+a.日期+' '+a.时间:''}${a.原时段?'\n原时段：'+a.原时段:''}`,'in',r);}
  }else{html+=bubble(r.from,`${r.title}\n${q.触发消息||q.恢复节点||'患者会话与已收集资料已附上。'}`,'out',r);html+=bubble(r.to,a.处理||a.执行||'收到任务，等待处理。');}}
  if(kind==='human')for(const m of c.messages.filter(m=>m.role==='staff'))html+=bubble('人工 / 医疗人员',m.text);
  return html||'<div class="role-empty"><span>○</span>尚未联系此角色<br><small>触发该场景条件后，消息会出现在这里</small></div>';}
